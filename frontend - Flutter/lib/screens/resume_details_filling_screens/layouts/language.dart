@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:miniproject/screens/resume_details_filling_screens/selectscreen.dart';
+import 'workdetails.dart'; // Update this import if needed
 
 class LanguagePage extends StatefulWidget {
   @override
@@ -8,7 +10,6 @@ class LanguagePage extends StatefulWidget {
 class _LanguagePageState extends State<LanguagePage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _languageController = TextEditingController();
-
   String _selectedProficiency = 'Fluent';
 
   List<Map<String, String>> languages = [];
@@ -41,6 +42,7 @@ class _LanguagePageState extends State<LanguagePage> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    double fieldPadding = 16.0;
 
     return Scaffold(
       appBar: AppBar(
@@ -81,8 +83,7 @@ class _LanguagePageState extends State<LanguagePage> {
                           _selectedProficiency = value!;
                         });
                       },
-                      decoration:
-                          InputDecoration(labelText: 'Proficiency'),
+                      decoration: InputDecoration(labelText: 'Proficiency'),
                     ),
                   ),
                   SizedBox(width: 10),
@@ -104,16 +105,55 @@ class _LanguagePageState extends State<LanguagePage> {
                         return Card(
                           child: ListTile(
                             title: Text(lang['language']!),
-                            subtitle: Text("Proficiency: ${lang['proficiency']}"),
+                            subtitle:
+                                Text("Proficiency: ${lang['proficiency']}"),
                             trailing: IconButton(
-                              icon: Icon(Icons.remove_circle,
-                                  color: Colors.red),
+                              icon: Icon(Icons.remove_circle, color: Colors.red),
                               onPressed: () => _removeLanguage(index),
                             ),
                           ),
                         );
                       },
                     ),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState?.validate() ?? false) {
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            Selectscreen(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          var tween = Tween(begin: 0.0, end: 1.0);
+                          var fadeAnimation = animation.drive(tween);
+                          return FadeTransition(
+                            opacity: fadeAnimation,
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.purple[900],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: fieldPadding * 2,
+                    vertical: fieldPadding * 0.8,
+                  ),
+                ),
+                child: const Text(
+                  'Next',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
             ),
           ],
         ),

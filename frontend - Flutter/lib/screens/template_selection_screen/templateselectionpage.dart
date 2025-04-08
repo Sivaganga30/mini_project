@@ -28,7 +28,7 @@ class TemplateSelectionPage extends StatelessWidget {
           ),
         ),
         centerTitle: true, // Centers the title
-        automaticallyImplyLeading: false, // Removes back arrow
+      
       ),
       body: PageView.builder(
         scrollDirection: Axis.vertical, // Vertical scrolling

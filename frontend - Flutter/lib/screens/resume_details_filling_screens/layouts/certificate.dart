@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:miniproject/screens/resume_details_filling_screens/layouts/language.dart';
+
 
 class CertificatePage extends StatefulWidget {
   @override
@@ -38,7 +40,7 @@ class _CertificatePageState extends State<CertificatePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Certificates"),
+        title: const Text("Certificates"),
         backgroundColor: const Color(0xFFAD9CD0),
       ),
       body: Padding(
@@ -51,29 +53,33 @@ class _CertificatePageState extends State<CertificatePage> {
                 children: [
                   TextFormField(
                     controller: _certificateController,
-                    decoration: InputDecoration(labelText: 'Certificate Name'),
+                    decoration: const InputDecoration(labelText: 'Certificate Name'),
                     validator: (value) =>
                         value!.isEmpty ? 'Enter certificate name' : null,
                   ),
                   TextFormField(
                     controller: _yearController,
-                    decoration: InputDecoration(labelText: 'Year'),
+                    decoration: const InputDecoration(labelText: 'Year'),
                     keyboardType: TextInputType.number,
                     validator: (value) =>
                         value!.isEmpty ? 'Enter year' : null,
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: _addCertificate,
-                    child: Text('Add Certificate'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.deepPurple,
+                      foregroundColor: Colors.white,
+                    ),
+                    child: const Text('Add Certificate'),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: certificates.isEmpty
-                  ? Center(child: Text("No certificates added"))
+                  ? const Center(child: Text("No certificates added"))
                   : ListView.builder(
                       itemCount: certificates.length,
                       itemBuilder: (context, index) {
@@ -86,6 +92,38 @@ class _CertificatePageState extends State<CertificatePage> {
                         );
                       },
                     ),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                       LanguagePage(), // Replace with actual next page
+                      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                        var tween = Tween(begin: 0.0, end: 1.0);
+                        return FadeTransition(
+                          opacity: animation.drive(tween),
+                          child: child,
+                        );
+                      },
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.purple[900],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                ),
+                child: const Text(
+                  'Next',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
             ),
           ],
         ),
