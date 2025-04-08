@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:miniproject/screens/resume_details_filling_screens/selectscreen.dart';
+
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -141,7 +143,23 @@ class _LoginState extends State<Login> {
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState?.validate() ?? false) {
-                          // Handle login logic
+                           Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) =>
+                                      Selectscreen(),
+                              transitionsBuilder: (context, animation,
+                                  secondaryAnimation, child) {
+                                var tween = Tween(begin: 0.0, end: 1.0);
+                                var fadeAnimation = animation.drive(tween);
+                                return FadeTransition(
+                                  opacity: fadeAnimation,
+                                  child: child,
+                                );
+                              },
+                            ),
+                          );
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -163,7 +181,23 @@ class _LoginState extends State<Login> {
                     SizedBox(height: screenHeight * 0.02),
                     ElevatedButton(
                       onPressed: () {
-                        checkServerStatus(); // Call API when pressed
+                         Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) =>
+                                      Selectscreen(),
+                              transitionsBuilder: (context, animation,
+                                  secondaryAnimation, child) {
+                                var tween = Tween(begin: 0.0, end: 1.0);
+                                var fadeAnimation = animation.drive(tween);
+                                return FadeTransition(
+                                  opacity: fadeAnimation,
+                                  child: child,
+                                );
+                              },
+                            ),
+                          );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orange,

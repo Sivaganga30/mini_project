@@ -4,8 +4,10 @@ import 'package:miniproject/screens/resume_details_filling_screens/layouts/educa
 import 'package:miniproject/screens/resume_details_filling_screens/layouts/inputscreen.dart';
 import 'package:miniproject/screens/resume_details_filling_screens/layouts/acheivements.dart';
 import 'package:miniproject/screens/resume_details_filling_screens/layouts/skills.dart';
-import 'package:miniproject/screens/template_selection_screen/templateselectionpage.dart';
 import 'package:miniproject/screens/resume_details_filling_screens/layouts/workdetails.dart';
+import 'package:miniproject/screens/resume_details_filling_screens/layouts/certificate.dart';
+import 'package:miniproject/screens/resume_details_filling_screens/layouts/language.dart';
+import 'package:miniproject/screens/template_selection_screen/templateselectionpage.dart';
 
 class Selectscreen extends StatelessWidget {
   @override
@@ -47,12 +49,12 @@ class Selectscreen extends StatelessWidget {
         children: [
           Expanded(
             child: Padding(
-              padding: EdgeInsets.all(screenWidth * 0.04), // 4% of screen width
+              padding: EdgeInsets.all(screenWidth * 0.04),
               child: GridView.count(
                 crossAxisCount: 2,
-                crossAxisSpacing: screenWidth * 0.04, // 4% of screen width
-                mainAxisSpacing: screenHeight * 0.02, // 2% of screen height
-                childAspectRatio: 1.0, // Keeps the aspect ratio square (1:1)
+                crossAxisSpacing: screenWidth * 0.04,
+                mainAxisSpacing: screenHeight * 0.02,
+                childAspectRatio: 1.0,
                 children: [
                   SectionBox(
                     title: "Personal Details",
@@ -86,13 +88,13 @@ class Selectscreen extends StatelessWidget {
                     },
                   ),
                   SectionBox(
-                    title: "Achievements",
+                    title: "Summary",
                     imagePath: "assets/images/achievement.png",
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AchievementsPage()),
+                            builder: (context) => ProfessionalSummaryPage()),
                       );
                     },
                   ),
@@ -107,12 +109,34 @@ class Selectscreen extends StatelessWidget {
                     },
                   ),
                   SectionBox(
-                    title: "Curriculum Vitae",
+                    title: "Project",
                     imagePath: "assets/images/curriculum.png",
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Curriculum()),
+                        MaterialPageRoute(builder: (context) => ProjectPage()),
+                      );
+                    },
+                  ),
+                  SectionBox(
+                    title: "Certificate",
+                    imagePath: "assets/images/certificate.png",
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CertificatePage()),
+                      );
+                    },
+                  ),
+                  SectionBox(
+                    title: "Language",
+                    imagePath: "assets/images/language.png",
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LanguagePage()),
                       );
                     },
                   ),
@@ -121,7 +145,7 @@ class Selectscreen extends StatelessWidget {
             ),
           ),
 
-          // Generate PDF Button at Bottom
+          // Generate PDF Button
           Padding(
             padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02),
             child: Container(
@@ -147,9 +171,8 @@ class Selectscreen extends StatelessWidget {
                       fontSize: screenWidth * 0.045, color: Colors.white),
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      Colors.transparent, // Transparent to show gradient
-                  shadowColor: Colors.transparent, // Remove button shadow
+                  backgroundColor: Colors.transparent,
+                  shadowColor: Colors.transparent,
                   padding: EdgeInsets.symmetric(
                       vertical: screenHeight * 0.02,
                       horizontal: screenWidth * 0.1),
@@ -176,8 +199,11 @@ class SectionBox extends StatelessWidget {
   final String imagePath;
   final VoidCallback onTap;
 
-  const SectionBox(
-      {required this.title, required this.imagePath, required this.onTap});
+  const SectionBox({
+    required this.title,
+    required this.imagePath,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -199,7 +225,6 @@ class SectionBox extends StatelessWidget {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
               imagePath,

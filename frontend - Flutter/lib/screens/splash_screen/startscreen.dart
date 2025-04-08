@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:miniproject/screens/home_screen/homescreen.dart';
+import 'package:miniproject/screens/login_screen/login.dart';
+
 
 class StartScreen extends StatelessWidget {
   @override
@@ -53,7 +54,7 @@ class StartScreen extends StatelessWidget {
                   context,
                   PageRouteBuilder(
                     pageBuilder: (context, animation, secondaryAnimation) =>
-                        Homescreen(),
+                        Login(),
                     transitionsBuilder:
                         (context, animation, secondaryAnimation, child) {
                       var begin = 0.0;

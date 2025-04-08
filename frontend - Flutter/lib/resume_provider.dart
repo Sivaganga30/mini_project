@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class ResumeProvider extends ChangeNotifier {
-  // Existing private variables
+  // Private variables for personal information
   String _firstName = '';
   String _lastName = '';
   String _email = '';
@@ -9,11 +9,12 @@ class ResumeProvider extends ChangeNotifier {
   String _linkedin = '';
   String _github = '';
 
-  // New private variable for achievements
+  // Private variables for resume content
   String _achievements = '';
+  String _professionalSummary = '';
   String _selectedTemplate = '';
 
-  // Getters for existing fields
+  // Getters for personal information
   String get firstName => _firstName;
   String get lastName => _lastName;
   String get email => _email;
@@ -21,11 +22,12 @@ class ResumeProvider extends ChangeNotifier {
   String get linkedin => _linkedin;
   String get github => _github;
 
-  // Getter for achievements
+  // Getters for resume content
   String get achievements => _achievements;
+  String get professionalSummary => _professionalSummary;
   String get selectedTemplate => _selectedTemplate;
 
-  // Setters with notifyListeners for existing fields
+  // Setters for personal information with notifyListeners
   void updateFirstName(String value) {
     _firstName = value;
     notifyListeners();
@@ -56,13 +58,18 @@ class ResumeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Setter with notifyListeners for achievements
+  // Setters for resume content with notifyListeners
   void updateAchievements(String value) {
     _achievements = value;
     notifyListeners();
   }
 
-  void updateSelectedTemplate(String template) {
+  void updateProfessionalSummary(String value) {
+    _professionalSummary = value;
+    notifyListeners();
+  }
+
+   void updateSelectedTemplate(String template) {
     _selectedTemplate = template;
     notifyListeners();
   }
